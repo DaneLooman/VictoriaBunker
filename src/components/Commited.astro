@@ -1,0 +1,123 @@
+---
+
+---
+<section id="committed">
+    <div id="committed--contain">
+        <div id="committed--image">
+            <img src="./committed.webp" alt="men walking around in forrest in high oragne vests" height="384" width="512">
+        </div>
+        <div id="committed--text">
+            <h2>Committed to you</h2>
+            <p>Heritage Consultants, LLC, is committed to prioritizing diversity within the field of heritage preservation, not through words, but action. Our team of historians, archaeologists, architectural historians, and heritage preservation practitioners come from a variety of under-represented backgrounds. We are sensitive to the fact that we frequently are responsible for preserving, sharing, educating, and recording other people's history. <strong>We are committed to shared scholarship with community organizations, legacy populations, and scholars specializing in the histories we uncover.</strong></p>
+            <div id="committed--buttons">
+                <a href="/team">Our Team</a>
+                <a href="/team/#jobs">Careers</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    #committed{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding:48px 48px;
+        width:100%;
+    }
+    #committed--contain {
+        max-width: 1920px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        justify-items:center;
+    }
+    #committed--text > h2{
+       color: #1E1E1E;
+       font-size:3.2rem;
+       font-weight: 400;
+       margin:1rem 0;
+    }
+    #committed--text > p {
+        margin:0px;
+        margin-bottom:2rem;
+        font-weight: 1.4rem;
+        max-width: 600px;
+        line-height:30px;
+    }
+    #committed--buttons > a {
+        background-color:#0063A7;
+		color:#fff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        padding: 12px 36px;
+        margin-top:0px;
+        width: fit-content;
+        border:0px solid #fff;
+        margin-right:48px;
+        width:205px;
+        transition: background-color 200ms ease;
+    }
+
+    #committed--buttons > a:hover {
+        cursor: pointer;
+        background-color: #004575;
+    }
+    #committed--image {
+        justify-self: end;
+        padding:0px;
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        margin-right:80px;
+    }
+    #committed--image > img {
+        max-width: calc(100% - 24px);
+        width: 100%;
+        height: 100%;
+        border: 12px solid #0063A7;
+    }
+
+    @media only screen and (max-width: 1179px) { 
+        #committed--contain {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+        }
+        #committed--text {
+            grid-row:1 / 2
+        }
+        #committed--image {
+            justify-self: unset;
+            margin-right:0px;
+            margin-top:80px;
+        }
+    }
+
+    @media only screen and (max-width: 600px) { 
+        #committed {
+            padding:0px 8px;
+        }
+        #committed--text > h2{ 
+            font-size: 2.4rem;
+        }
+        #committed--image { 
+            justify-content: end;
+            justify-self: end;
+            text-align: center;
+            width: 100%;
+            margin: 48px 0;
+        }
+
+        #committed--buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #committed--buttons > a {
+            width: 160px;
+            margin:0
+        }
+    }
+
+
+</style>

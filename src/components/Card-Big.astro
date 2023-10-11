@@ -1,0 +1,152 @@
+---
+export interface Props {
+	title: string;
+	desc: string;
+	href: string;
+	image: string;
+	tag: string;
+	type: string;
+	odd?:boolean;
+	date:string;
+}
+
+
+
+const { title, desc, href, image, tag, type, odd=false , date} = Astro.props;
+let flipped = ""
+
+if(odd){
+	flipped="flipped"
+}
+---
+<div class="card--contain">
+	<div class={`card ${type} ${flipped}`}>
+		<a aria-label={`link to article ${title}`} class="card--image" href={href} style={`background-image: url("${image}?w=350&h=250"); background-position: center; background-repeat: no-repeat; background-size: cover;`}></a>
+	
+		<div class="card--text--contain">
+			<h2>{title}</h2>
+			<p class="card--date">{date} <span class="tag">{tag}</span></p>
+			<p class="card--desc">{desc}</p>
+			<a href={href} class="card--button" aria-label={`link to article ${title}`}>Read More</a>
+		</div>
+		
+	</div>
+</div>
+
+<style>
+	.card--contain {
+		width: 100%;
+	}
+	.card {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		width: 100%;
+		max-width: 1170px;
+		border:0px solid #fff;
+		margin:0 auto;
+		padding: 48px 48px;
+		column-gap: 64px;
+		border-top:2px solid #0063A7;
+		border-bottom:2px solid #0063A7;
+	}
+	.card--image{
+		min-width: 350px;
+		margin:36px;
+		aspect-ratio: 350 / 250;
+		position: relative;
+		border: 12px solid #0063A7;
+	}
+	h2{
+		font-size: 1.8rem;
+		margin-bottom:8px;
+	}
+	.card--date {
+		font-size: .8rem;
+		font-weight: 400;
+		margin-bottom:32px;
+	}
+	.tag {
+		font-size: .8rem;
+		font-weight: 400;
+		background-color: #0063A7;
+		padding:4px 8px;
+		color:#fff;
+		margin-left:16px;
+	}
+	.card--desc {
+		font-size: 1rem;
+		letter-spacing: 1px;
+		line-height: 1.5rem;
+		margin-bottom:48px;
+	}
+	.card--button {
+		display: block;
+		background-color:#0063A7;
+		color:#fff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        padding: 12px 36px;
+        margin-top:0px;
+        width: fit-content;
+		border:0px solid #fff;
+		transition: color 200ms linear;
+		transition: background-color 200ms linear;
+		cursor: pointer;
+	}
+	.card--button:hover{
+        background-color:#004575;
+    }
+
+
+	/* flipped */
+	.card.flipped {
+		background-color: #0063A7;
+		color:#fff;
+	}
+	.card.flipped > .card--image {
+		border: 12px solid #fff;
+		box-shadow:inset 0px 0px 1px 1px #000;
+	}
+	.card.flipped > .card--text--contain{
+		grid-column: 1 / 2;
+		grid-row:1 / 2;
+	}
+	.card.flipped > .card--text--contain > .card--date > .tag {
+		background-color: #fff;
+		color: #0063A7;
+	}
+
+	.card.flipped > .card--text--contain > .card--button {
+		background-color: #fff;
+		color: #0063A7;
+	}
+	.card.flipped > .card--text--contain > .card--button:hover{
+        color:#004575;
+		background-color: #dfdfdf;
+    }
+	
+
+	@media only screen and (max-width: 1100px) { 
+		.card {
+			padding: 32px 8px 48px 8px;
+			column-gap: 16px;
+		}
+		
+
+	}
+	@media only screen and (max-width: 900px) { 
+		.card {
+			grid-template-columns: 1fr;
+		}
+		.card--image {
+			min-width: 300px;
+			width: 300px;
+			margin-bottom:0px;
+		}
+		.card.flipped > .card--text--contain{
+			grid-column: auto;
+			grid-row: auto;
+		}
+	}
+
+</style>

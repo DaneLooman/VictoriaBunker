@@ -1,0 +1,134 @@
+---
+import { contentfulClient } from "../../lib/contentful.js";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import type { Document } from "@contentful/rich-text-types";
+import type { BlogPost } from "../../lib/contentful";
+import { findPathItemByKey } from 'astro/dist/core/render/route-cache';
+import CardBig from "../../components/Card-Big.astro";
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon";
+
+export async function getStaticPaths({paginate}){
+    const entries = await contentfulClient.getEntries<BlogPost>({
+        content_type: "blogPost"
+    });
+
+    const posts = entries.items.map((item) => {
+        const { title, date, description, slug, image, type } = item.fields;
+        return {
+            title,
+            slug,
+            description,
+            date: new Date(date).toLocaleDateString(undefined,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+            imageDesc: image.fields.description,
+            imageURL: image.fields.file.url,
+            type
+        };
+     });
+
+    return paginate(posts, {
+        pageSize : 8,
+    })
+}
+
+const {page} = Astro.props;
+---
+
+<Layout title="News archive for Heritage Consultants" description="Containts a chronological order of posts from Heritage Consultants focused on cultural resource management" pageForHeader="news">
+        
+       
+        <div class="posts">
+            <h1>News and Articles Archives</h1>
+            {    
+            page.data.map((post , i) => (
+                 i % 2 == 0 ?  <CardBig
+                    title={post.title} 
+                    desc={post.description}
+                    image={'https://' + post.imageURL}
+                    href={`./${post.slug}`}
+                    tag={post.type}
+                    type={post.type.replace(/\s/g, '')}
+                    date={post.date}
+                ></CardBig> :
+                <CardBig
+                    title={post.title} 
+                    desc={post.description}
+                    image={'https://' + post.imageURL}
+                    href={`./${post.slug}`}
+                    tag={post.type}
+                    type={post.type.replace(/\s/g, '')}
+                    date={post.date}
+                    odd={true}
+                ></CardBig>       
+            ))}
+        </div>
+
+        <nav>
+            {page.url.prev && <a href={`${page.url.prev}`}><Icon pack="feather" name="chevron-left" /> Previous <div class="bar"></div></a>}
+            {page.url.next &&<a href={`${page.url.next}`}>Next <Icon pack="feather" name="chevron-right" /><div class="bar"></div></a> }
+        </nav>
+</Layout>
+
+<script type="module" src="/scripts/model-viewer.min.js"></script>
+
+<style>
+    .posts{
+        padding: 24px 0px 0px 0px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 1920px;
+    }
+    h1{
+        font-size: 3rem;
+        color: #fff;
+        background-color: #0063A7;
+        font-weight: 400;
+        padding: 16px 32px;
+        align-self: flex-start;
+        margin-bottom:64px;
+        padding-left:10%;
+    }
+    .bar{
+        height: 2px;
+        width: 95%;
+        margin: 2px auto 3rem auto;
+        background-color: #0063A7;
+    }
+    nav {
+        margin-top:40px;
+        display: flex;
+        gap: 40px;
+    }
+    a{
+        text-decoration: none;
+        color:#0063A7;
+        font-size: 24px;
+    }
+    a > .bar {
+        width:0px;
+        transition: all .5s ease;
+    }
+
+    [astro-icon] {
+        height:24px;
+        margin-right:0px;
+        margin-bottom:-4px;
+        display: inline-flex; 
+        flex-direction: row; 
+        align-items: end;
+    }
+
+    a:hover > .bar {
+        width: 95%;
+    }
+
+    @media only screen and (max-width: 900px) { 
+        h1{
+			margin-bottom: 8px;
+            margin-top:0px;
+		}
+    }
+
+</style>

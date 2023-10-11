@@ -1,0 +1,316 @@
+---
+import { Icon } from 'astro-icon';
+export interface Props {
+	currentPage: string;
+}
+
+const { currentPage } = Astro.props;
+
+let links = [
+	{
+		label: 'Services',
+		link: '/#services',
+		class: '',
+	},
+	{
+		label: 'News',
+		link: '/news/',
+		class: '',
+	},
+	{
+		label: 'About Us',
+		link: '/#about',
+		class: '',
+	},
+];
+
+links.forEach((link) => {
+	if (link.label.toLowerCase() == currentPage.toLocaleLowerCase()) {
+		link.class = 'active';
+	}
+});
+---
+
+<header>
+	<div id='nav--contain'>
+		<a href='/' id='nav--logo__button' aria-label='Logo to click to go home'
+			><img
+				width='184'
+				height='62'
+				src='/logo.webp'
+				id='nav--logo__image'
+				alt='Victoria Bunker presidential mountain range logo in blue.'
+			/></a
+		>
+		<nav>
+			{
+				links.map((link) => (
+					<a class={link.class} href={link.link}>
+						{link.label}
+						<span class='slider' />
+					</a>
+				))
+			}
+			<a href='/#contact' type='button' id='nav--contact'>Contact Us</a>
+			<div class='menu-toggle' id='mobile-menu'>
+				<span class='bar'></span>
+				<span class='bar'></span>
+				<span class='bar'></span>
+			</div>
+		</nav>
+	</div>
+	<div id='mobileNav'>
+		<a class='mobileAnchor' href='./'>Home</a>
+		{
+			links.map((link) => (
+				<a class='mobileAnchor' href={link.link}>
+					{link.label}
+				</a>
+			))
+		}
+		<a class='mobileAnchor' href='tel:+'
+			><Icon pack='feather' name='phone' /> XXX-XXX-XXX</a
+		>
+		<a class='mobileAnchor' href='mailto:DGEORGE@VictoriaBunker.COM'
+			><Icon pack='feather' name='mail' /> Email Us</a
+		>
+	</div>
+</header>
+
+<style>
+	.mobileAnchor > [astro-icon] {
+		height: 28px;
+		margin-right: 4px;
+		margin-bottom: -2px;
+		display: inline-flex;
+		flex-direction: row;
+		align-items: end;
+	}
+	header {
+		display: flex;
+		align-items: center;
+		height: 70px;
+		background-color: #fff;
+		border-bottom: 1px solid #194259;
+		width: 100%;
+		justify-content: center;
+		position: sticky;
+		top: 0px;
+		z-index: 20;
+		box-shadow: 0px 4px 4px rgba(25, 66, 89, 0.25);
+	}
+	#nav--contain {
+		display: flex;
+		max-width: 1980px;
+		width: 100%;
+		height: 100%;
+		justify-content: space-between;
+		align-items: center;
+	}
+	#nav--logo__button {
+		margin-left: 40px;
+		border: 0px solid #fff;
+		background-color: #fff;
+		cursor: pointer;
+	}
+	#nav--logo__image {
+		background-color: #fff;
+	}
+	nav {
+		margin-right: 40px;
+		display: flex;
+		align-items: center;
+	}
+	nav > a {
+		color: #212121;
+		font-size: 1rem;
+		margin-right: 40px;
+		text-decoration: none;
+		transition: color 200ms linear;
+		font-weight: 400;
+		position: relative;
+		padding: 6px 0px;
+	}
+	nav > a.active {
+		color: #646464;
+	}
+
+	nav > a:hover {
+		color: #194259;
+	}
+	nav > a > .slider {
+		position: absolute;
+		bottom: -6px;
+		left: 0;
+		width: 100%;
+		height: 3px;
+		content: '';
+		background-color: #194259;
+		opacity: 0;
+		transition: all 200ms linear;
+	}
+	nav > a:hover > .slider {
+		bottom: 0;
+		opacity: 1;
+	}
+
+	#nav--contact {
+		padding: 8px 24px;
+		border: none;
+		border-radius: 5px;
+		font-weight: bold;
+		letter-spacing: 2px;
+		color: #ffffff;
+		transition: all 1000ms;
+		position: relative;
+		overflow: hidden;
+		outline: 2px solid #194259;
+		background-color: #194259;
+		text-decoration: none;
+	}
+
+	#nav--contact:hover {
+		color: #194259;
+		transform: scale(1.1);
+		outline: 2px solid #194259;
+		box-shadow: 4px 5px 17px -4px #194259;
+	}
+
+	#nav--contact:before {
+		content: '';
+		position: absolute;
+		left: -50px;
+		top: 0;
+		width: 0;
+		height: 100%;
+		background-color: #fff;
+		transform: skewX(45deg);
+		z-index: -1;
+		transition: width 1000ms;
+	}
+
+	#nav--contact:hover::before {
+		width: 250%;
+	}
+
+	#nav--button__mobile {
+		display: none;
+	}
+	/* MOBILE MENU & ANIMATION */
+
+	.menu-toggle .bar {
+		width: 32px;
+		height: 4px;
+		background-color: #194259;
+		margin: 6px 0px;
+		-webkit-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.menu-toggle {
+		justify-self: end;
+		display: none;
+		margin-left: 40px;
+	}
+
+	.menu-toggle:hover {
+		cursor: pointer;
+	}
+
+	#mobile-menu.is-active .bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	#mobile-menu.is-active .bar:nth-child(1) {
+		-webkit-transform: translateY(10px) rotate(45deg);
+		-ms-transform: translateY(10px) rotate(45deg);
+		-o-transform: translateY(10px) rotate(45deg);
+		transform: translateY(10px) rotate(45deg);
+	}
+
+	#mobile-menu.is-active .bar:nth-child(3) {
+		-webkit-transform: translateY(-10px) rotate(-45deg);
+		-ms-transform: translateY(-10px) rotate(-45deg);
+		-o-transform: translateY(-10px) rotate(-45deg);
+		transform: translateY(-10px) rotate(-45deg);
+	}
+
+	#mobileNav {
+		position: fixed;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		align-content: stretch;
+		padding: auto 0 0;
+		top: 71px;
+		transition: 0.5s;
+		left: -100%;
+		display: none;
+		width: 100%;
+		height: calc(100vh);
+		height: calc(100svh - 71px);
+		background: #fff;
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		z-index: 20;
+	}
+	#mobileNav.show {
+		left: 0;
+		transition: 0.5s;
+	}
+
+	#mobileNav {
+		color: #0063a7;
+	}
+
+	#mobileNav > a {
+		font-size: 28px;
+		text-decoration: none;
+		color: #194259;
+		text-align: center;
+		padding: 8px;
+	}
+
+	/* Mobile Devices - Phones/Tablets */
+	@media only screen and (max-width: 1000px) {
+		#nav--logo__button {
+			margin-left: 8px;
+		}
+		.menu-toggle {
+			margin-right: 8px;
+		}
+
+		#mobileNav {
+			display: flex;
+		}
+		nav {
+			margin-right: 8px;
+		}
+		nav > a,
+		#nav--contact {
+			display: none;
+		}
+		.menu-toggle,
+		.bar {
+			display: block;
+			cursor: pointer;
+		}
+	}
+</style>
+
+<script is:inline>
+document.getElementById('mobile-menu').addEventListener('click', function () {
+    document.getElementById('mobile-menu').classList.toggle('is-active');
+    document.getElementById('mobileNav').classList.toggle('show');
+});
+
+const anchors = document.getElementsByClassName('mobileAnchor');
+for (var i = 0; i < anchors.length; i++) {
+    var anchor = anchors[i];
+    anchor.addEventListener('click', function () {
+        document.getElementById('mobile-menu').classList.toggle('is-active');
+        document.getElementById('mobileNav').classList.toggle('show');
+    });
+}
+</script>

@@ -1,0 +1,67 @@
+---
+import Nav from '../components/Nav.astro';
+export interface Props {
+	title: string;
+	pageForHeader: string;
+	description: string;
+}
+
+import { GoogleFontsOptimizer } from 'astro-google-fonts-optimizer';
+
+import Footer from '../components/Footer.astro';
+
+const { title, pageForHeader, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width' />
+		<link rel='icon' type='image/png' href='/favicon.png' />
+		<meta name='generator' content={Astro.generator} />
+		<meta name='description' content={description} />
+		<title>{title}</title>
+		<GoogleFontsOptimizer
+			url='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&family=Noto+Serif:wght@100;400;700&display=swap'
+		/>
+	</head>
+	<body>
+		<Nav currentPage={pageForHeader} />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+		<style is:global>
+			* {
+				box-sizing: border-box;
+			}
+			:root {
+				--accent: 124, 58, 237;
+				--accent-gradient: linear-gradient(
+					45deg,
+					rgb(var(--accent)),
+					#da62c4 30%,
+					white 60%
+				);
+			}
+			html {
+				background-color: #fff;
+				scroll-behavior: smooth;
+				font-family: 'Montserrat', san-serif;
+			}
+			body {
+				margin: 0px;
+				width: 100vw;
+			}
+			main {
+				margin: 0px auto;
+				padding: 0px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 100%;
+			}
+		</style>
+	</body>
+</html>
