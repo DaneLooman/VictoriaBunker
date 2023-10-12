@@ -2,129 +2,171 @@
 
 ---
 
-<section id="contact">
-    <div id="contact--form--contain">
-        <h2>Contact Us</h2>
-        <form name="contact" method="POST" data-netlify="true" id="contact--form">
-            <label class="visually-hidden" for="Fname">First Name:</label><input type="text" name="First Name" placeholder="First name"/>
-            <label class="visually-hidden" for="Lname">Last Name:</label><input type="text" name="Last Name"  placeholder="Last name"/>
-            <label class="visually-hidden" for="email">Your Email:</label><input id="emailInput" type="email" name="Email Address" placeholder="Email address" />
-            <label class="visually-hidden" for="message">Message:</label><textarea id="messageInput" name="Message" placeholder="Message"></textarea>
-            <button type="submit" id="contactSubmit">Email Us</button>
-            <a href="tel:860-299-6328" id="contactCall">Call Us</a>
-          </form>
-    </div>
-    <div style="width: 100%"><iframe loading="lazy" title="google maps interactive widget for finding 830 BERLIN TPKE, BERLIN, CT 06037 our office address" width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=830%20BERLIN%20TPKE,%20BERLIN,%20CT%2006037+(Heritage%20Consultants)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a></iframe></div>
+<section id='contact'>
+	<div id='contact--form--contain'>
+		<h2>Contact Us</h2>
+		<form name='contact' method='POST' data-netlify='true' id='contact--form'>
+			<label class='visually-hidden' for='Fname'>First Name:</label><input
+				type='text'
+				name='First Name'
+				placeholder='First name'
+				required
+			/>
+			<label class='visually-hidden' for='Lname'>Last Name:</label><input
+				type='text'
+				name='Last Name'
+				placeholder='Last name'
+				required
+			/>
+			<label class='visually-hidden' for='email'>Your Email:</label><input
+				id='emailInput'
+				type='email'
+				name='Email Address'
+				placeholder='Email address'
+				required
+			/>
+			<label class='visually-hidden' for='message'>Message:</label><textarea
+				id='messageInput'
+				name='Message'
+				placeholder='Message'
+				required></textarea>
+			<button type='submit' id='contactSubmit'>Email Us</button>
+			<a href='tel:860-299-6328' id='contactCall'>Call Us</a>
+		</form>
+	</div>
+	<div style='width: 100%'>
+		<iframe
+			loading='lazy'
+			title='google maps interactive widget for finding 830 BERLIN TPKE, BERLIN, CT 06037 our office address'
+			width='100%'
+			height='600'
+			frameborder='0'
+			scrolling='no'
+			marginheight='0'
+			marginwidth='0'
+			src='https://maps.google.com/maps?width=100%25&height=600&hl=en&q=830%20BERLIN%20TPKE,%20BERLIN,%20CT%2006037+(Heritage%20Consultants)&t=&z=14&ie=UTF8&iwloc=B&output=embed'
+			><a href="https://www.maps.ie/distance-area-calculator.html">measure
+			acres/hectares on map</a></iframe>
+	</div>
 </section>
 <style>
-    /* Hide Labels except for screen readers */
-    .visually-hidden { 
-        border: 0;
-        padding: 0;
-        margin: 0;
-        position: absolute !important;
-        height: 1px; 
-        width: 1px;
-        overflow: hidden;
-        clip: rect(1px 1px 1px 1px); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-        clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
-        clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
-        white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
-    }
-
-    #contact{
-        width: 100%;
-        max-width: 1920px;
-        background-color: #0063A7;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        padding: 64px; 
-        margin-top: 40px;
-        scroll-margin-top: 69px;
-    }
-    #contact--form--contain{
-        background-color: #fff;
-        padding: 48px 80px;
-        max-height: calc(100% - 4px);
-    }
-    #contact--form--contain > h2 {
-        font-weight: 400;
-        font-size: 3.5rem;
-        margin-bottom:40px;
-        margin-top: 24px;
-    }
-    #contact--form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 16px;
-        row-gap: 32px;
-        justify-items: center;
-    }
-
-    #contact--form > input {
-        padding:8px;
-        border-radius: 0px;
-        border:1px solid #00000080;
-        width: 100%;
-        font-size: 1.2rem;
-    }
-
-    #messageInput , #emailInput {
-        grid-column: 1 / 3;
-    }
-
-    #messageInput {
-        padding:8px;
-        height:100px;
-        resize: none;
-        width: 100%;
-        font-size: 1.2rem;
-    }
-
-    #contactSubmit , #contactCall {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color:#0063A7;
-		color:#fff;
-        text-decoration: none;
-        font-size: 1.2rem;
-        padding: 12px 36px;
-        margin-top:0px;
-        width: fit-content;
-		border:0px solid #fff;
-        width:100%;
-        cursor: pointer;
-        transition: background-color 200ms ease;
-    }
-
-    #contactSubmit:hover , #contactCall:hover{
-        cursor: pointer;
-        background-color: #004575;
-    }
-
-    @media only screen and (max-width: 1180px) { 
-        #contact{
-            grid-template-columns: 1fr;
-            row-gap: 0px;
-        }
-        #contact--form--contain{
-            max-height: 100%;
-        }
+	/* Hide Labels except for screen readers */
+	.visually-hidden {
+		border: 0;
+		padding: 0;
+		margin: 0;
+		position: absolute !important;
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
+		clip: rect(
+			1px 1px 1px 1px
+		); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+		clip: rect(
+			1px,
+			1px,
+			1px,
+			1px
+		); /*maybe deprecated but we need to support legacy browsers */
+		clip-path: inset(
+			50%
+		); /*modern browsers, clip-path works inwards from each corner*/
+		white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
 	}
 
-    @media only screen and (max-width: 700px) { 
-        #contact{
-            padding: 64px 16px; 
-        }
-        #contact--form--contain{
-            padding: 24px 16px 48px 16px;
-        }
-        #contactSubmit {
-            padding:0px;
-        }
+	#contact {
+		width: 100%;
+		max-width: 1920px;
+		background-color: #0063a7;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		padding: 64px;
+		margin-top: 40px;
+		scroll-margin-top: 69px;
+	}
+	#contact--form--contain {
+		background-color: #fff;
+		padding: 48px 80px;
+		max-height: calc(100% - 4px);
+	}
+	#contact--form--contain > h2 {
+		font-weight: 400;
+		font-size: 3.5rem;
+		margin-bottom: 40px;
+		margin-top: 24px;
+	}
+	#contact--form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 16px;
+		row-gap: 32px;
+		justify-items: center;
+	}
 
-    }
+	#contact--form > input {
+		padding: 8px;
+		border-radius: 0px;
+		border: 1px solid #00000080;
+		width: 100%;
+		font-size: 1.2rem;
+	}
 
-    
+	#messageInput,
+	#emailInput {
+		grid-column: 1 / 3;
+	}
+
+	#messageInput {
+		padding: 8px;
+		height: 100px;
+		resize: none;
+		width: 100%;
+		font-size: 1.2rem;
+	}
+
+	#contactSubmit,
+	#contactCall {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #0063a7;
+		color: #fff;
+		text-decoration: none;
+		font-size: 1.2rem;
+		padding: 12px 36px;
+		margin-top: 0px;
+		width: fit-content;
+		border: 0px solid #fff;
+		width: 100%;
+		cursor: pointer;
+		transition: background-color 200ms ease;
+	}
+
+	#contactSubmit:hover,
+	#contactCall:hover {
+		cursor: pointer;
+		background-color: #004575;
+	}
+
+	@media only screen and (max-width: 1180px) {
+		#contact {
+			grid-template-columns: 1fr;
+			row-gap: 0px;
+		}
+		#contact--form--contain {
+			max-height: 100%;
+		}
+	}
+
+	@media only screen and (max-width: 700px) {
+		#contact {
+			padding: 64px 16px;
+		}
+		#contact--form--contain {
+			padding: 24px 16px 48px 16px;
+		}
+		#contactSubmit {
+			padding: 0px;
+		}
+	}
 </style>

@@ -27,11 +27,14 @@ const { title, pageForHeader, description } = Astro.props;
 		/>
 	</head>
 	<body>
-		<Nav currentPage={pageForHeader} />
-		<main>
-			<slot />
-		</main>
-		<Footer />
+		<div id='main-contain'>
+			<Nav currentPage={pageForHeader} />
+			<main>
+				<slot />
+			</main>
+			<Footer />
+		</div>
+
 		<style is:global>
 			* {
 				box-sizing: border-box;
@@ -53,6 +56,17 @@ const { title, pageForHeader, description } = Astro.props;
 			body {
 				margin: 0px;
 				width: 100vw;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			#main-contain {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				max-width: 1680px;
+				background: #dfdfdf;
+				overflow: hidden;
 			}
 			main {
 				margin: 0px auto;
