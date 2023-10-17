@@ -106,58 +106,58 @@
 		</div>
 	</div>
 	<div id='services--images'>
-			<img
-				width='500'
-				height='357'
-				id='arch--image'
-				class='active'
-				alt='Picture of a historical red bridge'
-				loading='lazy'
-				srcset='hero.webp 350w, hero.webp 500w'
-				sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
-			/>
-			<img
-				width='500'
-				height='357'
-				id='history--image'
-				class=''
-				alt='Picture of classic colonial white house'
-				loading='lazy'
-				srcset='hero.webp 350w, hero.webp 500w'
-				sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
-			/>
-			<img
-				width='500'
-				height='357'
-				id='gis--image'
-				class=''
-				alt='Classic weathered map of Hartford'
-				loading='lazy'
-				srcset='hero.webp 350w, hero.webp 500w'
-				sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
-			/>
-			<img
-				width='500'
-				height='357'
-				id='cemetery--image'
-				class=''
-				alt='Image of cemetery being excavated'
-				loading='lazy'
-				srcset='hero.webp 350w, hero.webp 500w'
-				sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
-			/>
-			<img
-				width='500'
-				height='357'
-				id='gis2--image'
-				class=''
-				alt='Topography Map'
-				loading='lazy'
-				srcset='hero.webp 350w, hero.webp 500w'
-				sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
-			/>
+		<img
+			width='500'
+			height='357'
+			id='arch--image'
+			class='active'
+			alt='Picture of a historical red bridge'
+			loading='lazy'
+			srcset='dog2.webp 350w, dog2.webp 500w'
+			sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
+		/>
+		<img
+			width='500'
+			height='357'
+			id='history--image'
+			class=''
+			alt='Picture of classic colonial white house'
+			loading='lazy'
+			srcset='hero.webp 350w, hero.webp 500w'
+			sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
+		/>
+		<img
+			width='500'
+			height='357'
+			id='gis--image'
+			class=''
+			alt='Classic weathered map of Hartford'
+			loading='lazy'
+			srcset='hero.webp 350w, hero.webp 500w'
+			sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
+		/>
+		<img
+			width='500'
+			height='357'
+			id='cemetery--image'
+			class=''
+			alt='Image of cemetery being excavated'
+			loading='lazy'
+			srcset='hero.webp 350w, hero.webp 500w'
+			sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
+		/>
+		<img
+			width='500'
+			height='357'
+			id='gis2--image'
+			class=''
+			alt='Topography Map'
+			loading='lazy'
+			srcset='dog1.webp 350w, dog1.webp 500w'
+			sizes='(maxWidth : 350px) 350px , (maxWidth : 500px) 500px'
+		/>
 	</div>
-    <img id="mountain" src="mountain.svg" alt="Girl in a jacket" width="1920px"></img>
+	<img id='mountain' src='mountain.svg' alt='Girl in a jacket' width='1920px' />
 </section>
 
 <style>
@@ -165,10 +165,12 @@
 		padding-top: 24px;
 		background-color: #fff;
 		display: grid;
-		grid-template-columns: auto 1.5fr 500px;
+		grid-template-columns: auto 1.5fr 0.75fr;
 		max-width: 1920px;
 		scroll-margin-top: 69px;
 		overflow: hidden;
+		position: relative;
+		padding-bottom: 115px;
 	}
 	/* --- Services Selectors --- */
 	#services--selector {
@@ -176,7 +178,7 @@
 		flex-direction: column;
 		align-items: start;
 		position: relative;
-        margin-left:120px;
+		margin-left: 80px;
 	}
 	#services--selector > h2 {
 		color: #194259;
@@ -245,7 +247,8 @@
 	}
 	/* --- Services Desc --- */
 	#services--descs {
-		padding: 24px 80px 0px 80px;
+		padding: 80px 80px 0px 32px;
+		transition: all 200ms ease-in;
 	}
 	.services--descs--contain {
 		max-height: 0px;
@@ -272,6 +275,7 @@
 		font-weight: 400;
 		line-height: 133.4%; /* 24.012px */
 		letter-spacing: -0.27px;
+		margin-bottom: 0px;
 	}
 
 	/* --- Services Images --- */
@@ -281,41 +285,107 @@
 		justify-content: center;
 		align-items: center;
 		position: relative;
-		width: calc(100% - 120px);
+		width: calc(100% - 80px);
 		z-index: 0;
-        margin-right:120px;
+		margin-right: 80px;
+		aspect-ratio: 1 / 1.5;
 	}
 	#services--images > img {
-        position:absolute;
+		position: absolute;
 		border-radius: 12px;
-        z-index:5;
-        transform: translate(0 , 400%);
-        max-width:100%;
-        height:auto;
+		z-index: 5;
+		transform: translate(0, 500%);
+		max-width: 100%;
+		height: auto;
+		transition: all 600ms ease-in;
 	}
 	#services--images > img.active {
-		box-sizing: unset;
 		max-height: 100%;
 		display: block;
-        transform: translate(0 , 15%);
-        aspect-ratio: 1 / 2;
+		transform: translate(0, 15%);
+		aspect-ratio: 1 / 1.5;
+		transition: all 600ms ease-in;
 	}
-    #mountain {
-        grid-column: 1 / span 3;
-        width:100%;
-        z-index:1;
-    }
+	#mountain {
+		position: absolute;
+		grid-column: 1 / span 3;
+		z-index: 1;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+	}
 	/* Mobile Stuff */
 	#services--selector--mobile {
 		display: none;
 	}
-	@media only screen and (max-width: 1500px) {
+	@media only screen and (max-width: 1200px) {
+		#services {
+			grid-template-columns: auto 1fr;
+		}
+		#services--images {
+			display: none;
+		}
 	}
 
-	@media only screen and (max-width: 1350px) {
-	}
-
-	@media only screen and (max-width: 1000px) {
+	@media only screen and (max-width: 900px) {
+		#services {
+			grid-template-columns: 1fr;
+			padding-bottom: 60px;
+		}
+		#services--selector {
+			display: none;
+		}
+		#services--selector--mobile {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		#services--selector--mobile > h2 {
+			color: #194259;
+			font-family: Noto Serif;
+			font-size: 56px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 36px; /* 64.286% */
+			letter-spacing: -0.84px;
+			margin: 16px 0px 32px 0px;
+		}
+		#services--picker__mobile {
+			font-size: 16px;
+			padding: 4px;
+			color: #194259;
+			font-family: Montserrat;
+		}
+		#services--descs {
+			padding-top: 0px;
+		}
+		#services--descs {
+			padding: 0 24px 0px;
+			margin-top: 0px;
+		}
+		.services--descs--contain > h3 {
+			display: none;
+		}
+		.services--descs--contain > p {
+			padding-top: 16px;
+		}
+		#services--images {
+			display: flex;
+			margin: 0px;
+			justify-content: center;
+			width: 250px;
+			height: auto;
+			justify-self: center;
+			margin-top: -32px;
+		}
+		#services--images > img {
+			width: 100%;
+		}
+		#services--images > img.active {
+			transform: translate(0, 56px);
+		}
 	}
 </style>
 
@@ -348,20 +418,18 @@
 			slideUp();
 			//---show correct Desc & Image
 			slideDown(topic);
-			showImage(`${topic}--image`);
 		});
 
 	function slideUp() {
 		var elem = document.querySelector('.services--descs--contain.active');
-		elem.style.maxHeight = '0px';
 		elem.classList.remove('active');
 		var elem2 = document.querySelector('#services--images > .active');
-		elem2.style.display = 'none';
 		elem2.classList.remove('active');
 	}
-	function slideDown(el) {
-		var elem = document.getElementById(el);
+	function slideDown(topic) {
+		var elem = document.getElementById(topic);
 		elem.classList.add('active');
-		elem.style.maxHeight = '100%';
+		var elem = document.getElementById(`${topic}--image`);
+		elem.classList.add('active');
 	}
 </script>
