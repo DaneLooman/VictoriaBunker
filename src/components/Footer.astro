@@ -1,67 +1,94 @@
 ---
 import { Icon } from 'astro-icon';
 ---
-<footer>
-    <a href="tel:860-299-6328" aria-label="Call us at 860-299-6328"><Icon pack="feather" name="phone"/> 860.299.6328</a>
-    <a href="mailto:DGEORGE@HERITAGE-CONSULTANTS.COM" aria-label="email us at DGEORGE@HERITAGE-CONSULTANTS.COM"><Icon pack="feather" name="mail"/> DGEORGE@HERITAGE-CONSULTANTS.COM</a>
-    <a href="geo:41.6279307,-72.74313" target="_blank" aria-label="visit us at 830 BERLIN TPKE, BERLIN, CT 06037"><Icon pack="feather" name="map-pin"/> 830 BERLIN TPKE, BERLIN, CT 06037</a>
-    <div class="social">
-        <a href="https://www.facebook.com/HeritageConsultantsLLC" aria-label="Link to our facebook"><Icon pack="feather" name="facebook"/></a>
-        <!-- <a href="" aria-label="Link to our twitter"><Icon pack="feather" name="twitter"/></a> -->
-        <a href="https://www.linkedin.com/company/heritage-consultants/" aria-label="Link to our Linked In"><Icon pack="feather" name="linkedin"/></a>
-    </div>
-    <p>Copyright ©2023 Heritage Consultants, LLC</p>
 
+<footer>
+	<a href='tel:603-776-4306' aria-label='Call us at (603) 776-4306'
+		><Icon pack='feather' name='phone' /> 603.776.4306</a
+	>
+	<a
+		href='mailto:DGEORGE@VICTORIABUNKER.COM'
+		aria-label='email us at DGEORGE@VICTORIABUNKER.COM'
+		><Icon pack='feather' name='mail' /> DGeorge@VictoriaBunker.com</a
+	>
+	<a
+		href='geo:41.6279307,-72.74313'
+		target='_blank'
+		aria-label='visit us at 31 Africa Road Alton, NH 03809'
+		><Icon pack='feather' name='map-pin' /> 31 Africa Road Alton, NH 03809</a
+	>
+	<!-- <div class='social'>
+		<a
+			href='https://www.facebook.com/HeritageConsultantsLLC'
+			aria-label='Link to our facebook'
+			><Icon pack='feather' name='facebook' /></a
+		>
+		<a href="" aria-label="Link to our twitter"><Icon pack="feather" name="twitter"/></a>
+		<a
+			href='https://www.linkedin.com/company/heritage-consultants/'
+			aria-label='Link to our Linked In'
+			><Icon pack='feather' name='linkedin' /></a
+		>
+	</div> -->
+	<p>Copyright ©2023 Victoria Bunker, LLC</p>
 </footer>
 <style>
-    [astro-icon] {
-        height:2rem;
-        margin: 0 1rem -2px 1rem;
-        display: inline-flex; 
-        flex-direction: row; 
-        align-items: end;
-        color: #0063A7;
-    }
-    footer{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color:#0063A7;
-        padding:64px 0 40px 0;
-    }
-    footer > a {
-        text-decoration: none;
-        color: #0063A7;
-        font-size: 1.2rem;
-        margin-bottom:16px;
-        transition: color .2s ease;
-    }
+	[astro-icon] {
+		height: 2rem;
+		margin: 0 1rem -2px 1rem;
+		display: inline-flex;
+		flex-direction: row;
+		align-items: end;
+		color: #0063a7;
+	}
+	footer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: #0063a7;
+		padding: 64px 0 40px 0;
+		background-color: #fff;
+		width: 100%;
+	}
+	footer > a {
+		text-decoration: none;
+		color: #0063a7;
+		font-size: 1.2rem;
+		margin-bottom: 16px;
+		transition: color 0.2s ease;
+	}
 
-    footer > a >  [astro-icon] {
-        height: 16px;
-        margin-right:.6rem;
-        margin-left:0;
-    }
-    .social {
-        display: flex;
-        max-width: fit-content;
-        margin:16px;
-    }
-    .social > a {
-        transition: color .2s ease;
-    }
+	footer > p {
+		margin: 0;
+		margin-top: 32px;
+		font-size: 12px;
+	}
 
-    footer > a:hover , .social > a:hover , footer > a:hover > [astro-icon], .social > a:hover > [astro-icon]{
-        color:  #004575
-    } 
+	footer > a > [astro-icon] {
+		height: 16px;
+		margin-right: 0.6rem;
+		margin-left: 0;
+	}
+	.social {
+		display: flex;
+		max-width: fit-content;
+		margin: 16px;
+	}
+	.social > a {
+		transition: color 0.2s ease;
+	}
 
-    @media only screen and (max-width: 700px) { 
-        footer > a {
-            font-size: 1rem;
-            margin-bottom:24px;
-        }
+	footer > a:hover,
+	.social > a:hover,
+	footer > a:hover > [astro-icon],
+	.social > a:hover > [astro-icon] {
+		color: #004575;
+	}
 
-    }
-
-    
+	@media only screen and (max-width: 700px) {
+		footer > a {
+			font-size: 1rem;
+			margin-bottom: 24px;
+		}
+	}
 </style>

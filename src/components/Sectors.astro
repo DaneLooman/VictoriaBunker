@@ -3,25 +3,25 @@
 ---
 
 <section id='sectors'>
-	<h2>Expertise for All Sectors</h2>
+	<h2>Combined Expertise</h2>
 	<div id='sectors--icons'>
 		<div class='icon--contain'>
 			<img
-				src='./utility.svg'
+				src='./energy.svg'
 				alt='icon of electrical pole'
 				class=''
-				height='100'
-				width='130'
+				height='232'
+				width='232'
 			/>
 			<p>Utility-Energy</p>
 		</div>
 		<div class='icon--contain'>
 			<img
-				src='./transport.svg'
+				src='./Transportation.svg'
 				alt='icon of bus'
 				class=''
-				height='100'
-				width='130'
+				height='232'
+				width='232'
 			/>
 			<p>Transportation</p>
 		</div>
@@ -30,8 +30,8 @@
 				src='./private.svg'
 				alt='icon of a house'
 				class=''
-				height='100'
-				width='130'
+				height='232'
+				width='232'
 			/>
 			<p>Private</p>
 		</div>
@@ -40,8 +40,8 @@
 				src='./municipal.svg'
 				alt='icon of  school'
 				class=''
-				height='100'
-				width='130'
+				height='232'
+				width='232'
 			/>
 			<p>Municipal</p>
 		</div>
@@ -50,20 +50,12 @@
 				src='./telecom.svg'
 				alt='icon of a cellphone tower'
 				class=''
-				height='100'
-				width='130'
+				height='232'
+				width='232'
 			/>
 			<p>Telecom</p>
 		</div>
 	</div>
-	<img
-		src='./5sectors.svg'
-		alt='icon of a cellphone tower, school house, house, bus, and electrical pole'
-		class=''
-		id='mobile-sectors'
-		height='350'
-		width='350'
-	/>
 </section>
 
 <style>
@@ -73,16 +65,18 @@
 		flex-direction: column;
 		width: 100%;
 		align-items: center;
-		padding: 48px;
+		padding: 80px 16px 56px 16px;
 	}
 	#sectors > h2 {
-		color: #fff;
+		color: #d9d9d9;
 		font-family: Noto Serif;
 		font-size: 56px;
 		font-style: normal;
 		font-weight: 400;
 		line-height: 36px; /* 64.286% */
 		letter-spacing: -0.84px;
+		margin-top: 0px;
+		margin-bottom: 56px;
 	}
 	#sectors--icons {
 		display: flex;
@@ -96,7 +90,7 @@
 		align-items: center;
 	}
 	.icon--contain > p {
-		color: #fff;
+		color: #d9d9d9;
 		font-weight: 700;
 		font-size: 2rem;
 		font-family: Montserrat;
@@ -107,17 +101,26 @@
 
 	@media only screen and (max-width: 1000px) {
 		#sectors {
-			padding: 48px 8px;
+			padding: 48px 16px;
 		}
 		#sectors > h2 {
-			font-size: 2rem;
+			font-size: 2.4rem;
+			margin-bottom: 40px;
 		}
-		.icon--contain {
-			display: none;
+		#sectors--icons {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 16px;
 		}
-		#mobile-sectors {
-			display: block;
-			width: 350px;
+		.icon--contain > img {
+			width: 100px;
+			height: 100px;
+		}
+		.icon--contain > p {
+			font-size: 1.4rem;
+		}
+		.icon--contain:nth-child(3) {
+			grid-column: 1 / 3;
 		}
 	}
 </style>

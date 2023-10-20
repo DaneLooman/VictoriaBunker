@@ -1,97 +1,93 @@
 ---
 import Card from '../components/Card.astro';
-import { contentfulClient } from "../lib/contentful.js";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import type { Document } from "@contentful/rich-text-types";
-import type { BlogPost } from "../lib/contentful";
+import { contentfulClient } from '../lib/contentful.js';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import type { Document } from '@contentful/rich-text-types';
+import type { BlogPost } from '../lib/contentful';
 
 const entries = await contentfulClient.getEntries<BlogPost>({
-    content_type: "blogPost",
-    limit: 3,
+	content_type: 'blogPost',
+	limit: 3,
 });
 
 const posts = entries.items.map((item) => {
-  const { title, date, description, slug, image, type } = item.fields;
-  return {
-    title,
-    slug,
-    description,
-    date: new Date(date).toLocaleDateString(undefined,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
-	imageDesc: image.fields.description,
-	imageURL: image.fields.file.url,
-	type
-  };
+	const { title, date, description, slug, image, type } = item.fields;
+	return {
+		title,
+		slug,
+		description,
+		date: new Date(date).toLocaleDateString(undefined, {
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		}),
+		imageDesc: image.fields.description,
+		imageURL: image.fields.file.url,
+		type,
+	};
 });
-
 ---
-<section id="news"> 
-    <p>Heritage Consultants</p>
-    <h2>In the News</h2>
-    <div id="news--articles">
-        {posts.map((post , index) => (
-            <Card
-            title={post.title} 
-            desc={post.description}
-            image={'https://' + post.imageURL}
-            href={`./news/${post.slug}`}
-            tag={post.type}
-            type={index.toString()}
-            ></Card>
-        ))}
-    </div>
-</section>  
-<style>
-    #news{
-        background-color: #fff;
-        width: 100%;
-        height: fit-content;
-        padding:48px;
-        position: relative;
-        color:#fff;
-        background-image: url('./../forrest.webp');
-        background-repeat: no-repeat;
-        background-size: 100% 50%;
-        max-width: 1920px;
-        display: flex;
-        flex-direction: column;
-    }
-    #news > p {
-        color:#fff;
-        font-size: 2rem;
-        margin:0;
-        font-weight: 100;
-        letter-spacing: .9px;
-    }
-    #news > h2 {
-        color:#fff;
-        font-size: 3.6rem;
-        margin:4px 0px 40px 0px;
-        font-weight: 700;
-    }
-    #news--articles{
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 1400px;
-        align-self:center;
-        align-items:stretch;
-        height: fit-content;
-    }
 
-    @media only screen and (max-width: 1200px) { 
-        #news--articles{
-            flex-direction: column;
-            align-items: center;
-        }
-        #news{
-            align-items: center;
-            padding: 48px 0px;
-            background-color: #fff;
-            background-image: none;
-            height: auto;
-        }
-        #news > p ,  #news > h2 {
-            color:#0063A7;
-        }
-    }
+<section id='news'>
+	<div id='news--articles'>
+		{
+			posts.map((post, index) => (
+				<Card
+					title={post.title}
+					desc={post.description}
+					image={'https://' + post.imageURL}
+					href={`./news/${post.slug}`}
+					tag={post.type}
+					type={index.toString()}
+				/>
+			))
+		}
+	</div>
+</section>
+<style>
+	#news {
+		background-color: #fff;
+		width: 100%;
+		height: fit-content;
+		position: relative;
+		color: #fff;
+		background-image: url('./../forrest.webp');
+		background-repeat: no-repeat;
+		background-size: 100% 50%;
+		max-width: 1920px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#news--articles {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 8px;
+		justify-content: space-between;
+		width: 100%;
+		max-width: 1920px;
+		align-self: center;
+		align-items: stretch;
+		height: fit-content;
+	}
+
+	@media only screen and (max-width: 1200px) {
+		#news--articles {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		#news {
+			align-items: center;
+			padding: 0px 0px;
+			background-color: #fff;
+			background-image: none;
+			height: auto;
+		}
+		#news > p,
+		#news > h2 {
+			color: #0063a7;
+		}
+	}
 </style>
