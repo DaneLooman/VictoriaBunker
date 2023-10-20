@@ -23,7 +23,7 @@
 	</div>
 	<div id='services--selector--mobile'>
 		<h2>Services</h2>
-		<select id='services--picker__mobile'>
+		<select id='services--picker__mobile' aria-label='Services'>
 			<option data-topic='arch'>Archaeology</option>
 			<option data-topic='history'>Architectural History</option>
 			<option data-topic='gis'>Geographic and Information Services</option>
@@ -381,6 +381,11 @@
 		}
 		#services--images > img.active {
 			transform: translate(0, 56px);
+		}
+		#mountain {
+			height: 100px;
+			width: auto;
+			align-self: center;
 		}
 	}
 </style>
