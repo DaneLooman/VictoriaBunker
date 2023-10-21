@@ -19,7 +19,7 @@ let links = [
 	},
 	{
 		label: 'About Us',
-		link: '/#about',
+		link: '/#committed',
 		class: '',
 	},
 ];
@@ -51,7 +51,14 @@ links.forEach((link) => {
 					</a>
 				))
 			}
-			<a href='/#contact' type='button' id='nav--contact'>Contact Us</a>
+			<a
+				class='nav--contact'
+				href='mailto:DGEORGE@VICTORIABUNKER.COM'
+				aria-label='email us'><Icon pack='feather' name='mail' /> Email Us</a
+			>
+			<a class='nav--contact' href='tel:603-776-4306' aria-label='Call Us'
+				><Icon pack='feather' name='phone' /> Call Us</a
+			>
 			<div class='menu-toggle' id='mobile-menu'>
 				<span class='bar'></span>
 				<span class='bar'></span>
@@ -68,8 +75,8 @@ links.forEach((link) => {
 				</a>
 			))
 		}
-		<a class='mobileAnchor' href='tel:+'
-			><Icon pack='feather' name='phone' /> XXX-XXX-XXX</a
+		<a class='mobileAnchor' href='tel:603-776-4306'
+			><Icon pack='feather' name='phone' /> 603-776-4306</a
 		>
 		<a class='mobileAnchor' href='mailto:DGEORGE@VictoriaBunker.COM'
 			><Icon pack='feather' name='mail' /> Email Us</a
@@ -78,13 +85,26 @@ links.forEach((link) => {
 </header>
 
 <style>
-	.mobileAnchor > [astro-icon] {
-		height: 28px;
-		margin-right: 4px;
-		margin-bottom: -2px;
+	[astro-icon] {
+		height: 1rem;
+		margin: 0 0.2rem -2px 0.2rem;
 		display: inline-flex;
 		flex-direction: row;
 		align-items: end;
+		color: #fff;
+		transition: all 1000ms;
+	}
+	a:hover > [astro-icon] {
+		color: #194259;
+	}
+	.mobileAnchor > [astro-icon] {
+		height: 28px;
+		margin-right: 4px;
+		margin-bottom: -4px;
+		display: inline-flex;
+		flex-direction: row;
+		align-items: end;
+		color: #194259;
 	}
 	header {
 		display: flex;
@@ -121,10 +141,10 @@ links.forEach((link) => {
 		display: flex;
 		align-items: center;
 	}
-	nav > a {
+	nav > a:not(.nav--contact) {
 		color: #212121;
 		font-size: 1rem;
-		margin-right: 40px;
+		margin-right: 32px;
 		text-decoration: none;
 		transition: color 200ms linear;
 		font-weight: 400;
@@ -154,8 +174,8 @@ links.forEach((link) => {
 		opacity: 1;
 	}
 
-	#nav--contact {
-		padding: 8px 24px;
+	.nav--contact {
+		padding: 8px 8px;
 		border: none;
 		border-radius: 5px;
 		font-weight: bold;
@@ -167,16 +187,17 @@ links.forEach((link) => {
 		outline: 2px solid #194259;
 		background-color: #194259;
 		text-decoration: none;
+		margin-right: 24px;
 	}
 
-	#nav--contact:hover {
+	.nav--contact:hover {
 		color: #194259;
 		transform: scale(1.1);
 		outline: 2px solid #194259;
 		box-shadow: 4px 5px 17px -4px #194259;
 	}
 
-	#nav--contact:before {
+	.nav--contact:before {
 		content: '';
 		position: absolute;
 		left: -50px;
@@ -189,8 +210,20 @@ links.forEach((link) => {
 		transition: width 1000ms;
 	}
 
-	#nav--contact:hover::before {
+	.nav--contact:hover::before {
 		width: 250%;
+	}
+
+	#nav--contain > nav > a:nth-child(5) {
+		outline: 2px solid #23798b;
+		background-color: #23798b;
+	}
+	#nav--contain > nav > a:nth-child(5):hover {
+		background-color: #fff;
+		color: #23798b;
+	}
+	#nav--contain > nav > a:nth-child(5):hover > [astro-icon] {
+		color: #23798b;
 	}
 
 	#nav--button__mobile {
@@ -301,16 +334,16 @@ links.forEach((link) => {
 
 <script is:inline>
 document.getElementById('mobile-menu').addEventListener('click', function () {
-    document.getElementById('mobile-menu').classList.toggle('is-active');
-    document.getElementById('mobileNav').classList.toggle('show');
+	document.getElementById('mobile-menu').classList.toggle('is-active');
+	document.getElementById('mobileNav').classList.toggle('show');
 });
 
 const anchors = document.getElementsByClassName('mobileAnchor');
 for (var i = 0; i < anchors.length; i++) {
-    var anchor = anchors[i];
-    anchor.addEventListener('click', function () {
-        document.getElementById('mobile-menu').classList.toggle('is-active');
-        document.getElementById('mobileNav').classList.toggle('show');
-    });
+	var anchor = anchors[i];
+	anchor.addEventListener('click', function () {
+		document.getElementById('mobile-menu').classList.toggle('is-active');
+		document.getElementById('mobileNav').classList.toggle('show');
+	});
 }
 </script>

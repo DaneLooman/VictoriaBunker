@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon';
 ---
 
 <footer>
+	<img src='/VBI_alt.svg' height='90' width='171' alt='' />
 	<a href='tel:603-776-4306' aria-label='603.776.4306'
 		><Icon pack='feather' name='phone' /> 603.776.4306</a
 	>
@@ -39,20 +40,20 @@ import { Icon } from 'astro-icon';
 		display: inline-flex;
 		flex-direction: row;
 		align-items: end;
-		color: #0063a7;
+		color: #194259;
 	}
 	footer {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		color: #0063a7;
-		padding: 64px 0 40px 0;
+		color: #194259;
+		padding: 40px 0 40px 0;
 		background-color: #fff;
 		width: 100%;
 	}
 	footer > a {
 		text-decoration: none;
-		color: #0063a7;
+		color: #194259;
 		font-size: 1.2rem;
 		margin-bottom: 16px;
 		transition: color 0.2s ease;
@@ -60,8 +61,11 @@ import { Icon } from 'astro-icon';
 
 	footer > p {
 		margin: 0;
-		margin-top: 32px;
+		margin-top: 16px;
 		font-size: 12px;
+	}
+	footer > img {
+		margin-bottom: 32px;
 	}
 
 	footer > a > [astro-icon] {

@@ -1,5 +1,5 @@
 ---
-
+import { Icon } from 'astro-icon';
 ---
 
 <div id='hero'>
@@ -10,11 +10,33 @@
 	</p>
 	<div id='hero--buttons'>
 		<a href='/#services' role='button' class='button'>Our Services</a>
-		<a href='/#contact' role='button' class='button'>Contact Us</a>
+		<a
+			class='button'
+			href='mailto:DGEORGE@VICTORIABUNKER.COM'
+			aria-label='email us'><Icon pack='feather' name='mail' /> Email Us</a
+		>
+		<a class='button' href='tel:603-776-4306' aria-label='Call Us'
+			><Icon pack='feather' name='phone' /> Call Us</a
+		>
 	</div>
 </div>
 
 <style>
+	[astro-icon] {
+		height: 1rem;
+		margin: 0 0.2rem -2px 0.2rem;
+		display: inline-flex;
+		flex-direction: row;
+		align-items: end;
+		color: #fff;
+		transition: all 1000ms;
+	}
+	a:hover > [astro-icon] {
+		color: #194259;
+	}
+	.button:nth-child(2):hover > [astro-icon] {
+		color: #23798b;
+	}
 	#hero {
 		display: flex;
 		flex-direction: column;
@@ -73,7 +95,8 @@
 		text-decoration: none;
 	}
 
-	.button:first-child {
+	.button:first-child,
+	.button:last-child {
 		outline: 2px solid #194259;
 		background-color: #194259;
 	}
@@ -85,7 +108,8 @@
 		box-shadow: 4px 5px 17px -4px #23798b;
 	}
 
-	.button:first-child:hover {
+	.button:first-child:hover,
+	.button:last-child:hover {
 		color: #194259;
 		transform: scale(1.1);
 		outline: 2px solid #194259;
@@ -110,6 +134,27 @@
 		width: 250%;
 	}
 
+	#hero--buttons > .button:nth-child(2),
+	#hero--buttons > .button:nth-child(3) {
+		display: none;
+	}
+
+	@media only screen and (max-width: 1000px) {
+		#hero--buttons {
+			flex-direction: column;
+			gap: 32px;
+			font-size: 1.2rem;
+		}
+		#hero > p {
+			font-size: 1.2rem;
+			margin: 32px 8px 54px 8px;
+		}
+		#hero--buttons > .button:nth-child(2),
+		#hero--buttons > .button:nth-child(3) {
+			display: block;
+		}
+	}
+
 	@media only screen and (max-width: 700px) {
 		#hero {
 			height: calc(100vh - 140px);
@@ -119,17 +164,11 @@
 			font-size: 3.2rem;
 			line-height: 4rem;
 		}
-		#hero > p {
-			font-size: 1.2rem;
-			margin: 32px 8px 32px 8px;
-		}
+
 		#hero > p > br {
 			display: none;
 		}
 		#hero--buttons {
-			flex-direction: column;
-			gap: 16px;
-			font-size: 1.2rem;
 		}
 	}
 

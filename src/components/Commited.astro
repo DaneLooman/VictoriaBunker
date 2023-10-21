@@ -4,14 +4,13 @@
 
 <section id='committed'>
 	<div id='committed--contain'>
-		<div id='committed--image'>
-			<img
-				src='./committed.webp'
-				alt='men walking around in forrest in high oragne vests'
-				height='384'
-				width='512'
-			/>
-		</div>
+		<img
+			id='committed--image'
+			src='./aboutus.webp'
+			alt='men walking around in forrest in high oragne vests'
+			height='840'
+			width='615'
+		/>
 		<div id='committed--text'>
 			<h2>Who we are</h2>
 			<p>
@@ -40,14 +39,19 @@
 		width: 100%;
 		max-width: 1920px;
 		background-color: #194259;
+		height: fit-content;
 	}
 	#committed--contain {
 		max-width: 1920px;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		width: 100%;
-		justify-items: center;
+		justify-items: left;
 	}
+	#committed--text {
+		padding-left: 80px;
+	}
+
 	#committed--text > h2 {
 		color: #fff;
 		font-family: Noto Serif;
@@ -70,52 +74,45 @@
 	}
 
 	#committed--image {
-		justify-self: end;
-		padding: 0px;
-		position: relative;
-		width: fit-content;
-		height: fit-content;
-		margin-right: 80px;
-	}
-	#committed--image > img {
-		max-width: calc(100% - 24px);
+		max-width: 100%;
 		width: 100%;
 		height: 100%;
-		border: 12px solid #0063a7;
+		object-fit: cover;
+		background-size: cover;
 	}
 
-	@media only screen and (max-width: 1179px) {
+	@media only screen and (max-width: 1300px) {
 		#committed--contain {
-			grid-template-columns: 1fr;
-			grid-template-rows: auto auto;
+			grid-template-columns: 2fr 1fr;
 		}
 		#committed--text {
+			grid-column: 1 / 2;
 			grid-row: 1 / 2;
 		}
 		#committed--image {
 			justify-self: unset;
-			margin-right: 0px;
-			margin-top: 80px;
+			grid-column: 2 / 3;
 		}
 	}
 
-	@media only screen and (max-width: 600px) {
-		#committed {
-			padding: 0px 24px;
+	@media only screen and (max-width: 1000px) {
+		#committed--contain {
+			grid-template-columns: 1fr;
+			justify-items: center;
+		}
+		#committed--text {
+			padding: 16px;
 		}
 		#committed--text > h2 {
 			font-size: 2.4rem;
 			margin-top: 24px;
+			text-align: center;
 		}
 		#committed--text > p {
 			margin-bottom: 24px;
 		}
 		#committed--image {
-			justify-content: end;
-			justify-self: end;
-			text-align: center;
-			width: 100%;
-			margin: 48px 0;
+			grid-column: 1 / 2;
 		}
 	}
 </style>
