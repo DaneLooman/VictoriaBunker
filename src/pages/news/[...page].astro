@@ -1,134 +1,204 @@
 ---
-import { contentfulClient } from "../../lib/contentful.js";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import type { Document } from "@contentful/rich-text-types";
-import type { BlogPost } from "../../lib/contentful";
+import { contentfulClient } from '../../lib/contentful.js';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import type { Document } from '@contentful/rich-text-types';
+import type { BlogPost } from '../../lib/contentful';
 import { findPathItemByKey } from 'astro/dist/core/render/route-cache';
-import CardBig from "../../components/Card-Big.astro";
-import Layout from "../../layouts/Layout.astro";
-import { Icon } from "astro-icon";
+import CardBig from '../../components/Card-Big.astro';
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon';
 
-export async function getStaticPaths({paginate}){
-    const entries = await contentfulClient.getEntries<BlogPost>({
-        content_type: "blogPost"
-    });
+export async function getStaticPaths({ paginate }) {
+	const entries = await contentfulClient.getEntries<BlogPost>({
+		content_type: 'blogPost',
+	});
 
-    const posts = entries.items.map((item) => {
-        const { title, date, description, slug, image, type } = item.fields;
-        return {
-            title,
-            slug,
-            description,
-            date: new Date(date).toLocaleDateString(undefined,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
-            imageDesc: image.fields.description,
-            imageURL: image.fields.file.url,
-            type
-        };
-     });
+	const posts = entries.items.map((item) => {
+		const { title, date, description, slug, image, type } = item.fields;
+		return {
+			title,
+			slug,
+			description,
+			date: new Date(date).toLocaleDateString(undefined, {
+				weekday: 'long',
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric',
+			}),
+			imageDesc: image.fields.description,
+			imageURL: image.fields.file.url,
+			type,
+		};
+	});
 
-    return paginate(posts, {
-        pageSize : 8,
-    })
+	return paginate(posts, {
+		pageSize: 2,
+	});
 }
 
-const {page} = Astro.props;
+const { page } = Astro.props;
 ---
 
-<Layout title="News archive for Heritage Consultants" description="Containts a chronological order of posts from Heritage Consultants focused on cultural resource management" pageForHeader="news">
-        
-       
-        <div class="posts">
-            <h1>News and Articles Archives</h1>
-            {    
-            page.data.map((post , i) => (
-                 i % 2 == 0 ?  <CardBig
-                    title={post.title} 
-                    desc={post.description}
-                    image={'https://' + post.imageURL}
-                    href={`./${post.slug}`}
-                    tag={post.type}
-                    type={post.type.replace(/\s/g, '')}
-                    date={post.date}
-                ></CardBig> :
-                <CardBig
-                    title={post.title} 
-                    desc={post.description}
-                    image={'https://' + post.imageURL}
-                    href={`./${post.slug}`}
-                    tag={post.type}
-                    type={post.type.replace(/\s/g, '')}
-                    date={post.date}
-                    odd={true}
-                ></CardBig>       
-            ))}
-        </div>
+<Layout
+	title='News archive for Victoria Bunker'
+	description='Containts a chronological order of posts from Vicotira Bunker focused on cultural resource management'
+	pageForHeader='news'
+>
+	<div class='posts'>
+		<div class='title--contain'>
+			<h1>Articles Archive</h1>
+			<img
+				id='mountain'
+				src='/mountain.svg'
+				alt='icon of blue mountain range'
+			/>
+		</div>
 
-        <nav>
-            {page.url.prev && <a href={`${page.url.prev}`}><Icon pack="feather" name="chevron-left" /> Previous <div class="bar"></div></a>}
-            {page.url.next &&<a href={`${page.url.next}`}>Next <Icon pack="feather" name="chevron-right" /><div class="bar"></div></a> }
-        </nav>
+		{
+			page.data.map((post, i) =>
+				i % 2 == 0 ? (
+					<CardBig
+						title={post.title}
+						desc={post.description}
+						image={'https://' + post.imageURL}
+						href={`./${post.slug}`}
+						tag={post.type}
+						type={post.type.replace(/\s/g, '')}
+						date={post.date}
+					/>
+				) : (
+					<CardBig
+						title={post.title}
+						desc={post.description}
+						image={'https://' + post.imageURL}
+						href={`./${post.slug}`}
+						tag={post.type}
+						type={post.type.replace(/\s/g, '')}
+						date={post.date}
+						odd={true}
+					/>
+				)
+			)
+		}
+	</div>
+
+	<nav>
+		{
+			page.url.prev && (
+				<a href={`${page.url.prev}`}>
+					<Icon pack='feather' name='chevron-left' /> Previous{' '}
+					<div class='bar' />
+				</a>
+			)
+		}
+		{
+			page.url.next && (
+				<a href={`${page.url.next}`}>
+					Next{' '}
+					<>
+						<Icon pack='feather' name='chevron-right' />
+						<div class='bar' />
+					</>
+				</a>
+			)
+		}
+	</nav>
 </Layout>
 
-<script type="module" src="/scripts/model-viewer.min.js"></script>
+<script type='module' src='/scripts/model-viewer.min.js'></script>
 
 <style>
-    .posts{
-        padding: 24px 0px 0px 0px;
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        max-width: 1920px;
-    }
-    h1{
-        font-size: 3rem;
-        color: #fff;
-        background-color: #0063A7;
-        font-weight: 400;
-        padding: 16px 32px;
-        align-self: flex-start;
-        margin-bottom:64px;
-        padding-left:10%;
-    }
-    .bar{
-        height: 2px;
-        width: 95%;
-        margin: 2px auto 3rem auto;
-        background-color: #0063A7;
-    }
-    nav {
-        margin-top:40px;
-        display: flex;
-        gap: 40px;
-    }
-    a{
-        text-decoration: none;
-        color:#0063A7;
-        font-size: 24px;
-    }
-    a > .bar {
-        width:0px;
-        transition: all .5s ease;
-    }
+	nav {
+		padding: 96px 0 24px 0;
+		display: flex;
+		gap: 40px;
+	}
+	.bar {
+		height: 2px;
+		width: 95%;
+		margin: 2px auto 0 auto;
+		background-color: #194259;
+	}
+	a {
+		text-decoration: none;
+		color: #194259;
+		font-size: 24px;
+		font-weight: 700px;
+		font-family: 'Montserrat', san-serif;
+	}
+	a > .bar {
+		width: 0px;
+		transition: all 0.5s ease;
+		color: #194259;
+	}
+	[astro-icon] {
+		height: 24px;
+		margin-right: 0px;
+		margin-bottom: -4px;
+		display: inline-flex;
+		flex-direction: row;
+		align-items: end;
+	}
 
-    [astro-icon] {
-        height:24px;
-        margin-right:0px;
-        margin-bottom:-4px;
-        display: inline-flex; 
-        flex-direction: row; 
-        align-items: end;
-    }
+	a:hover > .bar {
+		width: 95%;
+	}
 
-    a:hover > .bar {
-        width: 95%;
-    }
+	.posts {
+		padding: 0px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 32px;
+		width: 100%;
+		max-width: 1920px;
+	}
+	.title--contain {
+		width: 100%;
+		padding: 0px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		grid-column: 1 / 3;
+	}
+	h1 {
+		font-size: 3rem;
+		color: #194259;
+		font-weight: 400;
+		padding: 16px 32px;
+		font-family: Noto Serif;
+		align-self: center;
+		margin-bottom: 0px;
+		margin-top: 24px;
+		padding-left: 10%;
+	}
+	#mountain {
+		width: 100%;
+		bottom: 0px;
+	}
 
-    @media only screen and (max-width: 900px) { 
-        h1{
-			margin-bottom: 8px;
-            margin-top:0px;
+	@media only screen and (max-width: 900px) {
+		.posts {
+			grid-template-columns: 1fr;
+			padding-bottom: 64px;
 		}
-    }
+		.title--contain {
+			grid-column: 1 / 2;
+		}
+		h1 {
+			margin-bottom: 8px;
+			margin-top: 0px;
+		}
+		nav {
+			padding-top: 16px;
+		}
+	}
 
+	@media only screen and (max-width: 600px) {
+		h1 {
+			font-size: 2rem;
+			margin-top: 16px;
+		}
+	}
 </style>

@@ -6,147 +6,144 @@ export interface Props {
 	image: string;
 	tag: string;
 	type: string;
-	odd?:boolean;
-	date:string;
+	odd?: boolean;
+	date: string;
 }
 
+const { title, desc, href, image, tag, type, odd = false, date } = Astro.props;
+let flipped = '';
 
-
-const { title, desc, href, image, tag, type, odd=false , date} = Astro.props;
-let flipped = ""
-
-if(odd){
-	flipped="flipped"
+if (odd) {
+	flipped = 'flipped';
 }
 ---
-<div class="card--contain">
+
+<div class='card--contain'>
 	<div class={`card ${type} ${flipped}`}>
-		<a aria-label={`link to article ${title}`} class="card--image" href={href} style={`background-image: url("${image}?w=350&h=250"); background-position: center; background-repeat: no-repeat; background-size: cover;`}></a>
-	
-		<div class="card--text--contain">
+		<a
+			aria-label={`link to article ${title}`}
+			class='card--image'
+			href={href}
+			style={`background-image: url("${image}?w=350&h=250"); background-position: center; background-repeat: no-repeat; background-size: cover;`}
+		></a>
+
+		<div class='card--text--contain'>
 			<h2>{title}</h2>
-			<p class="card--date">{date} <span class="tag">{tag}</span></p>
-			<p class="card--desc">{desc}</p>
-			<a href={href} class="card--button" aria-label={`link to article ${title}`}>Read More</a>
+			<p class='card--date'>{date} &nbsp; {tag}</p>
+			<p class='card--desc'>{desc}</p>
 		</div>
-		
+		<a href={href} class='card--button' aria-label={`link to article ${title}`}
+			>Read More</a
+		>
 	</div>
 </div>
 
 <style>
 	.card--contain {
 		width: 100%;
+		max-width: 600px;
+		transition: all 200ms ease-in;
+	}
+	.card--contain:hover > .card > .card--image {
+		filter: grayscale(0%);
 	}
 	.card {
 		display: grid;
-		grid-template-columns: auto 1fr;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr auto;
 		width: 100%;
 		max-width: 1170px;
-		border:0px solid #fff;
-		margin:0 auto;
-		padding: 48px 48px;
-		column-gap: 64px;
-		border-top:2px solid #0063A7;
-		border-bottom:2px solid #0063A7;
-	}
-	.card--image{
-		min-width: 350px;
-		margin:36px;
-		aspect-ratio: 350 / 250;
+		border: 0px solid #fff;
+		margin: 0px;
 		position: relative;
-		border: 12px solid #0063A7;
 	}
-	h2{
+	.card--image {
+		min-width: 350px;
+		aspect-ratio: 16 / 9;
+		transform: translate(0, 48px);
+		z-index: 0;
+		filter: grayscale(100%);
+		transition: all 200ms ease-in;
+	}
+	.card--text--contain {
+		background-color: #194259;
+		padding: 16px 48px;
+		color: #fff;
+		width: 85%;
+		justify-self: center;
+		z-index: 1;
+	}
+	h2 {
 		font-size: 1.8rem;
-		margin-bottom:8px;
+		margin-bottom: 8px;
 	}
 	.card--date {
-		font-size: .8rem;
+		font-size: 0.8rem;
 		font-weight: 400;
-		margin-bottom:32px;
+		margin-bottom: 16px;
+		padding-bottom: 16px;
+		border-bottom: 2px solid #fff;
+		width: fit-content;
 	}
 	.tag {
-		font-size: .8rem;
+		font-size: 0.8rem;
 		font-weight: 400;
-		background-color: #0063A7;
-		padding:4px 8px;
-		color:#fff;
-		margin-left:16px;
+		padding: 4px 8px;
+		color: #fff;
+		margin-left: 16px;
 	}
 	.card--desc {
 		font-size: 1rem;
 		letter-spacing: 1px;
 		line-height: 1.5rem;
-		margin-bottom:48px;
+		margin-bottom: 1em;
+		padding-bottom: 24px;
 	}
 	.card--button {
-		display: block;
-		background-color:#0063A7;
-		color:#fff;
-        text-decoration: none;
-        font-size: 1.2rem;
-        padding: 12px 36px;
-        margin-top:0px;
-        width: fit-content;
-		border:0px solid #fff;
-		transition: color 200ms linear;
-		transition: background-color 200ms linear;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 48px;
+		bottom: -24px;
+		right: 16px;
+		z-index: 2;
+		padding: 16px 24px;
+		border: none;
+		border-radius: 5px;
+		font-weight: bold;
+		letter-spacing: 2px;
+		color: #ffffff;
+		transition: all 1000ms;
+		overflow: hidden;
+		outline: 4px solid #23798b;
+		background-color: #23798b;
+		text-decoration: none;
 		cursor: pointer;
+		transition: all 200ms ease-in;
 	}
-	.card--button:hover{
-        background-color:#004575;
-    }
-
-
-	/* flipped */
-	.card.flipped {
-		background-color: #0063A7;
-		color:#fff;
-	}
-	.card.flipped > .card--image {
-		border: 12px solid #fff;
-		box-shadow:inset 0px 0px 1px 1px #000;
-	}
-	.card.flipped > .card--text--contain{
-		grid-column: 1 / 2;
-		grid-row:1 / 2;
-	}
-	.card.flipped > .card--text--contain > .card--date > .tag {
+	.card--button:hover {
+		color: #23798b;
 		background-color: #fff;
-		color: #0063A7;
 	}
 
-	.card.flipped > .card--text--contain > .card--button {
-		background-color: #fff;
-		color: #0063A7;
-	}
-	.card.flipped > .card--text--contain > .card--button:hover{
-        color:#004575;
-		background-color: #dfdfdf;
-    }
-	
-
-	@media only screen and (max-width: 1100px) { 
+	@media only screen and (max-width: 1100px) {
 		.card {
-			padding: 32px 8px 48px 8px;
 			column-gap: 16px;
 		}
-		
-
+		.card--contain > .card > .card--image {
+			filter: grayscale(0%);
+		}
+		h2 {
+			font-size: 1.4rem;
+		}
+		.card--text--contain {
+			padding: 16px;
+		}
 	}
-	@media only screen and (max-width: 900px) { 
+	@media only screen and (max-width: 900px) {
 		.card {
 			grid-template-columns: 1fr;
 		}
-		.card--image {
-			min-width: 300px;
-			width: 300px;
-			margin-bottom:0px;
-		}
-		.card.flipped > .card--text--contain{
-			grid-column: auto;
-			grid-row: auto;
-		}
 	}
-
 </style>
