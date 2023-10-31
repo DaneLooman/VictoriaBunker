@@ -129,7 +129,14 @@ const { title, desc, href, image, tag, type } = Astro.props;
 		width: 250%;
 	}
 
-	@media only screen and (max-width: 1200px) {
+	@media only screen and (max-width: 1550px) {
+		.card {
+			margin: 0px;
+			padding: 32px 24px;
+			grid-template-rows: 160px auto auto auto;
+		}
+	}
+	@media only screen and (max-width: 1220px) {
 		.card {
 			margin: 0px;
 			padding: 32px 24px;
