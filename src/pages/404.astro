@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	pageForHeader='404'
+	title='Victoria Bunker, LLC'
+	description='Victoria Bunker regularly conducts surveys for a wide range of archaeological and historic preservation projects.  We specialize in non-invasive remote sensing techniques that include Ground Penetrating Radar (GPR), magnetometer, Unmanned Aerial Vehicle (UAV), and LiDAR surveys, as well as minimally invasive surveys such as terrestrial and underwater coring.'
+>
+	<img
+		src='/404.svg'
+		alt='Stick figure picture lost in the mountains.'
+		width='960'
+		height='428'
+	/>
+	<h1>Looks like you wandered off the trail.</h1>
+	<a href='/' aria-label='link to homepage of Victoria Bunker, LLC.'
+		>Head back to VBI.</a
+	>
+	<hr />
+</Layout>
+
+<style>
+	img {
+		width: calc(100% - 32px);
+		max-width: 1200px;
+		height: auto;
+		margin-top: 40px;
+	}
+
+	a {
+		padding: 16px 24px;
+		border: none;
+		border-radius: 5px;
+		font-weight: bold;
+		letter-spacing: 2px;
+		color: #ffffff;
+		transition: all 1000ms;
+		position: relative;
+		overflow: hidden;
+		outline: 2px solid #23798b;
+		background-color: #23798b;
+		text-decoration: none;
+		margin-bottom: 60px;
+		font-size: 2rem;
+	}
+
+	a:hover {
+		background-color: #fff;
+		color: #23798b;
+		transform: scale(1.1);
+		outline: 2px solid #194259;
+		box-shadow: 4px 5px 17px -4px #23798b;
+	}
+
+	a:before {
+		content: '';
+		position: absolute;
+		left: -50px;
+		top: 0;
+		width: 0;
+		height: 100%;
+		background-color: #fff;
+		transform: skewX(45deg);
+		z-index: -1;
+		transition: width 1000ms;
+	}
+
+	a:hover::before {
+		width: 250%;
+	}
+
+	h1 {
+		font-size: 3rem;
+		color: #194259;
+		margin: 48px 0px 60px 0px;
+	}
+	hr {
+		width: 100%;
+		height: 2px;
+		color: #194259;
+		background-color: #194259;
+		margin: 0px;
+	}
+
+	@media only screen and (max-width: 1200px) {
+		h1 {
+			margin: 32px 0px 40px 0px;
+		}
+	}
+	@media only screen and (max-width: 940px) {
+		h1 {
+			font-size: 2rem;
+		}
+		a {
+			font-size: 1.6rem;
+		}
+	}
+
+	@media only screen and (max-width: 625px) {
+		h1 {
+			font-size: 1.2rem;
+		}
+		a {
+			font-size: 1.2rem;
+		}
+	}
+</style>
