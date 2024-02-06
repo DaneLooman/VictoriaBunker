@@ -4,20 +4,18 @@ import { Icon } from 'astro-icon';
 
 <footer>
 	<img src='/VBI_alt.svg' height='90' width='171' alt='' />
-	<a href='tel:603-776-4306' aria-label='603.776.4306'
-		><Icon pack='feather' name='phone' /> 603.776.4306</a
+	<a href='tel:860-299-6328' aria-label='860.299.6328'
+		><Icon pack='feather' name='phone' /> 860.299.6328</a
 	>
 	<a
 		href='mailto:DGEORGE@VICTORIABUNKER.COM'
 		aria-label='email us at DGEORGE@VICTORIABUNKER.COM'
 		><Icon pack='feather' name='mail' /> DGeorge@VictoriaBunker.com</a
 	>
-	<a
-		href='geo:41.6279307,-72.74313'
-		target='_blank'
-		aria-label='visit us at 31 Africa Road Alton, NH 03809'
-		><Icon pack='feather' name='map-pin' /> 31 Africa Road Alton, NH 03809</a
-	>
+	<p id='location'>
+		<Icon pack='feather' name='map-pin' /> PO Box 1088, Walpole, New Hampshire,
+		03608
+	</p>
 	<p>Copyright ©2023 Victoria Bunker, LLC</p>
 </footer>
 <style>
@@ -38,11 +36,13 @@ import { Icon } from 'astro-icon';
 		background-color: #fff;
 		width: 100%;
 	}
-	footer > a {
+	footer > a,
+	#location {
 		text-decoration: none;
 		color: #194259;
 		font-size: 1.2rem;
 		margin-bottom: 16px;
+		margin-top: 0;
 		transition: color 0.2s ease;
 	}
 
@@ -55,7 +55,8 @@ import { Icon } from 'astro-icon';
 		margin-bottom: 32px;
 	}
 
-	footer > a > [astro-icon] {
+	footer > a > [astro-icon],
+	#location > [astro-icon] {
 		height: 16px;
 		margin-right: 0.6rem;
 		margin-left: 0;
